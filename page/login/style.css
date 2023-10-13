@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1300px;
+  font-family: "Roboto", sans-serif;
+  margin: 0 auto;
+}
+
+.form-auth {
+  display: flex;
+  margin: 30px;
+  justify-content: start;
+}
+.form-register {
+  margin-left: 40px;
+}
+.link-page {
+  display: flex;
+  margin: 30px;
+}
+
+.home > a {
+  margin-right: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #000;
+}
+.home > a:hover {
+  color: #35c0c5;
+}
+.login-link > a {
+  margin-left: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #35c0c5;
+}
+
+.title-auth {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.required {
+  color: red;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.heard-login {
+  display: flex;
+  justify-content: center;
+}
+
+.username,
+.password {
+  height: 40px;
+  width: 540px;
+}
+
+.form-group > label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-group > input {
+  padding-left: 10px;
+}
+
+.btn-submit {
+  margin: 10px 0;
+  height: 40px;
+  width: 120px;
+  background-color: #35c0c5;
+  border: none;
+  color: #ffff;
+  cursor: pointer;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.login-litel {
+  display: flex;
+  justify-content: space-around;
+  padding-right: 140px;
+  padding-left: 140px;
+}
+
+.login .login-fb {
+  height: 37px;
+  width: 129px;
+}
+
+.login-gg {
+  height: 37px;
+  width: 129px;
+}
+.forget-password {
+  font-size: 14px;
+  text-decoration: none;
+  color: #35c0c5;
+}
+
+.text-auth {
+  font-size: 14px;
+  margin-top: 20px;
+}
+.text-auth > p {
+  margin-bottom: 10px;
+}

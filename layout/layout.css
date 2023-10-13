@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1300px;
+  font-family: "Roboto", sans-serif;
+  margin: 0 auto;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+.logo {
+  padding: 10px 0;
+}
+.header {
+  display: flex;
+}
+.phone-header,
+.header-search,
+.search_form,
+.btn-login,
+.cart-header,
+.btn-register {
+  float: right;
+  border-left: 1px solid #ebebeb;
+  padding: 0 20px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+.title-header {
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.input-group-btn {
+  border: none;
+  padding: 5px;
+  width: 120px;
+}
+.input-group-btn:focus {
+  border: none;
+}
+.btn-search {
+  border: none;
+  padding: 5px;
+  background: none;
+}
+.menu {
+  display: flex;
+  background-color: #1b1b1b;
+  padding: 0 30px;
+}
+.menu > li {
+  padding: 8px 40px 8px 0;
+  list-style: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #cccc;
+}
+.menu > li:hover {
+  color: #ffff;
+}
+.menu > li > a {
+  list-style: none;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #cccc;
+}
+.menu > li > a:hover {
+  color: #ffff;
+}
+.menu li .active {
+  color: #ffff;
+}
+.cart-header {
+  background-color: #35c0c5;
+}
+
+footer {
+  padding: 30px;
+  background-color: #1b1b1b;
+  color: #959391;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: start;
+}
+.footer-contact {
+  width: 500px;
+}
+.ft-address,
+.ft-phone {
+  display: flex;
+  margin: 15px 0;
+  font-size: 14px;
+}
+.ft-item-text {
+  margin-left: 3px;
+}
+.footer-item {
+  width: 25%;
+  margin-left: 80px;
+}
+.footer-item > ul {
+  list-style: none;
+}
+.footer-item > ul > li {
+  font-size: 14px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.footer-item > ul > li:hover {
+  position: relative;
+  left: 8px;
+  color: #35c0c5;
+}
+.title-item-footer {
+  margin: 10px 0 20px 0;
+}
+.ft-end {
+  margin-top: 60px;
+  text-align: center;
+  font-size: 14px;
+}
+.sp-ft {
+  color: #35c0c5;
+}
