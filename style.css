@@ -106,6 +106,10 @@
   color: #fff;
   border: 1px solid #35c0c5;
 }
+.link-selling-product-more{
+  text-decoration: none;
+  color: #000;
+}
 .selling-product-more {
   font-size: 14px;
   cursor: pointer;
@@ -290,8 +294,31 @@
   color: #898989;
 }
 .author-description {
-    font-size: 14px;
-    margin: 20px 0;
-    max-width: 90%;
-    color: #898989;
+  font-size: 14px;
+  margin: 20px 0;
+  max-width: 90%;
+  color: #898989;
+}
+
+.other-products {
+  margin: 20px 15px;
+  display: flex;
+}
+.outstanding-products {
+  width: 30%;
+}
+.title-product {
+  margin-bottom: 10px;
+}
+.frequently-purchased-products {
+  width: 70%;
+}
+.list-frequently-purchased-products{
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.list-outstanding-products{
+  margin-top: 30px;
 }

@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function highlightActiveLink() {
     const currentUrl = window.location.href;
     const menuLinks = document.querySelectorAll('.menu a');
-    console.log(currentUrl);
     menuLinks.forEach(link => {
         if (link.href === currentUrl) {
             link.classList.add('active');
