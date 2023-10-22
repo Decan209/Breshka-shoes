@@ -1,0 +1,157 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content {
+    padding-bottom: 30px;
+}
+
+/* ==================== Bread crumb ==================== */
+.breadcrumb {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 20px 0;
+    line-height: 24px;
+    background-color: transparent;
+}
+
+.breadcrumb__link {
+    color: #363636;
+    padding: 10px 0;
+}
+
+.breadcrumb__link--home:hover {
+    color: #35c0c5;
+}
+
+.breadcrumb__link:last-child {
+    color: #35c0c5;
+}
+
+.breadcrumb__separate {
+    margin: 0 10px;
+}
+
+.row {
+    display: flex;
+}
+
+/* ==================== Heading ==================== */
+.heading {
+    font-weight: 400;
+    margin: 0;
+    padding: 0 0 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+.desc {
+    width: 100%;
+    font-size: 14px;
+    color: #898989;
+    margin-bottom: 15px;
+}
+
+/* ==================== Form ==================== */
+.content__left {
+    flex-basis: 61%;
+    padding-right: 15px;
+}
+
+.form-control__item {
+    width: 100%;
+    margin-bottom: 15px;
+    color: #363636;
+}
+
+.form-control__item__title {
+    display: inline-block;
+    max-width: 100%;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    color: #333;
+}
+
+.form-control__item__title span {
+    color: red;
+}
+
+.form-control__item__input {
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e1e1e1;
+    background: #fff;
+}
+
+.form-control__item__input--name,
+.form-control__item__input--email {
+    height: 40px;
+}
+
+.form-control__item__input--content {
+    min-height: 100px;
+    padding: 10px 15px;
+    resize: none;
+}
+
+.form-control__btn {
+    display: inline-block;
+    border: 1px #35c0c5 solid;
+    background: #35c0c5;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.form-control__btn:hover {
+    background-color: #fff;
+    color: #35c0c5;
+}
+
+.content__right {
+    flex-basis: 38%;
+    padding: 0 15px;
+}
+
+.media {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.media__logo {
+    width: 240px;
+    height: 46px;
+}
+
+.content-item {
+    display: flex;
+    align-items: center;
+}
+
+.content-item {
+    margin-bottom: 10px;
+}
+
+.content-item__desc {
+    padding-left: 10px;
+    line-height: 1.7;
+    color: #464646;
+}
+
+.content-item__desc__link {
+    color: #464646;
+}
