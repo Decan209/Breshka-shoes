@@ -4,22 +4,24 @@
   box-sizing: border-box;
 }
 .container {
-  max-width: 1300px;
   font-family: "Roboto", sans-serif;
-  margin: 0 auto;
 }
 
 .form-auth {
   display: flex;
-  margin: 30px;
   justify-content: start;
+  max-width: 1300px;
+  margin: 30px auto;
+  padding-left: 30px;
 }
 .form-register {
   margin-left: 40px;
 }
 .link-page {
   display: flex;
-  margin: 30px;
+  max-width: 1300px;
+  margin: 30px auto;
+  padding-left: 30px;
 }
 
 .home > a {
