@@ -8,8 +8,14 @@ a {
     text-decoration: none;
 }
 
+.container {
+    font-family: "Roboto", sans-serif;
+}
+
 .content {
     padding-bottom: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 /* ==================== Bread crumb ==================== */
