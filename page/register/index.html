@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Đăng nhập tài khoản</title>
+    <title>Đăng ký tài khoản</title>
     <link
       rel="icon"
       href="//bizweb.dktcdn.net/100/091/133/themes/880367/assets/favicon.png?1676015027577"
@@ -17,7 +17,10 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,200;1,300&family=Roboto:wght@300;400&family=Secular+One&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -29,46 +32,91 @@
           </div>
           <div>/</div>
           <div class="login-link">
-            <a href="/">Đăng nhập tài khoản</a>
+            <a href="/">Đăng ký tài khoản</a>
           </div>
         </div>
         <div class="form-auth">
-          <div class="form-login">
-            <div class="title-auth">Đăng nhập tài khoản</div>
-            <div class="form-group">
-              <label for="username"
-                >Email
-                <span class="required">*</span>
-              </label>
-              <input
-                class="username"
-                type="text"
-                name="username"
-                id="email"
-                required
-                placeholder="Email"
-              />
-              <span id="emailError" class="error"></span>
+          <div class="form-register">
+            <div class="title-auth">Đăng ký tài khoản</div>
+            <div class="form-content">
+              <div class="form-group">
+                <label for="last-name"
+                  >Họ
+                  <span class="required">*</span>
+                </label>
+                <input
+                  class="last-name"
+                  type="text"
+                  name="last-name"
+                  id="lastName"
+                  required
+                  placeholder="Họ"
+                />
+                <span id="lastNameError" class="error"></span>
+              </div>
+              <div class="form-group">
+                <label for="fist-name"
+                  >Tên
+                  <span class="required">*</span>
+                </label>
+                <input
+                  class="fist-name"
+                  type="text"
+                  name="fist-name"
+                  id="fistName"
+                  required
+                  placeholder="Tên"
+                />
+                <span id="fistNameError" class="error"></span>
+              </div>
+              <div class="form-group">
+                <label for="email"
+                  >Email
+                  <span class="required">*</span>
+                </label>
+                <input
+                  class="email"
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  placeholder="Email"
+                />
+                <span id="emailError" class="error"></span>
+              </div>
+              <div class="form-group">
+                <label for="password"
+                  >Mật Khẩu
+                  <span class="required">*</span>
+                </label>
+                <input
+                  class="password"
+                  type="password"
+                  name="password"
+                  id="password"
+                  required
+                  placeholder="Mật Khẩu"
+                />
+                <span id="passwordError" class="error"></span>
+              </div>
+              <div class="form-group">
+                <label for="phone">Số điện thoại </label>
+                <input
+                  class="phone"
+                  type="number"
+                  name="phone"
+                  id="phone"
+                  placeholder="Số điện thoại"
+                />
+                <span id="phoneError" class="error"></span>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="password"
-                >Mật Khẩu
-                <span class="required">*</span>
-              </label>
-              <input
-                class="password"
-                type="password"
-                name="password"
-                id="password"
-                required
-                placeholder="Mật Khẩu"
-              />
-              <span id="passwordError" class="error"></span>
+            <div class="btn-content">
+              <button class="btn-submit" onclick="registerUser()">ĐĂNG KÝ</button> 
             </div>
-            <div>
-              <a class="forget-password" href="">Quên mật khẩu?</a>
+            <div class="btn-content">
+              <a class="forget-password" href="/page/login/index.html">Đăng nhập</a>
             </div>
-            <button class="btn-submit" onclick="loginUser()">ĐĂNG NHẬP</button>
             <div class="login">
               <span class="title-auth">Hoặc đăng nhập bằng</span>
               <div class="login-litel">
@@ -91,28 +139,12 @@
               </div>
             </div>
           </div>
-          <div class="form-register">
-            <div class="form-style">
-              <div class="title-auth">Bạn chưa có tài khoản</div>
-              <div class="text-auth">
-                <p>
-                  Đăng ký tài khoản để mua hàng nhanh hơn. Theo dõi đơn đặt
-                  hàng, vận chuyển.
-                </p>
-                <p>
-                  Cập nhật các tin tức sự kiện và các chương trình giảm giá của
-                  chúng tôi.
-                </p>
-              </div>
-            </div>
-            <a href="/page/register/index.html"><button class="btn-submit">ĐĂNG KÝ</button></a>
-          </div>
         </div>
       </div>
       <div id="footer"></div>
       <script src="../../layout/loadContent.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-      <script src="../../assets/js/login.js"></script>
+      <script src="../../assets/js/register.js"></script>
     </div>
   </body>
 </html>

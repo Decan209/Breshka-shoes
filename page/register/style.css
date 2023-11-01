@@ -8,8 +8,6 @@
 }
 
 .form-auth {
-  display: flex;
-  justify-content: start;
   max-width: 1300px;
   margin: 30px auto;
   padding-left: 30px;
@@ -52,6 +50,7 @@
 
 .form-group {
   display: flex;
+  width: 50%;
   flex-direction: column;
   margin: 20px 0;
 }
@@ -61,8 +60,11 @@
   justify-content: center;
 }
 
-.username,
-.password {
+.email,
+.password,
+.phone,
+.fist-name,
+.last-name {
   height: 40px;
   width: 540px;
 }
@@ -78,7 +80,7 @@
 }
 
 .btn-submit {
-  margin: 10px 0;
+  margin: 10px auto;
   height: 40px;
   width: 120px;
   background-color: #35c0c5;
@@ -95,7 +97,7 @@
 
 .login-litel {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding-right: 140px;
   padding-left: 140px;
 }
@@ -108,12 +110,13 @@
 .login-gg {
   height: 37px;
   width: 129px;
+  margin-left: 10px;
 }
 .forget-password {
   font-size: 14px;
   text-decoration: none;
   color: #35c0c5;
-}
+  }
 
 .text-auth {
   font-size: 14px;
@@ -126,4 +129,14 @@
   color: red;
   font-size: 12px;
   margin-top: 5px;
+}
+
+.form-content{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+}
+.btn-content{
+  display: flex;
+  justify-content: center;
 }
