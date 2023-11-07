@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Giỏ hàng</title>
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="//bizweb.dktcdn.net/100/091/133/themes/880367/assets/favicon.png?1676015027577"
+            type="image/x-icon"
+        />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,200;1,300&family=Roboto:wght@300;400&family=Secular+One&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <!-- Styles -->
+        <link rel="stylesheet" href="../../layout/layout.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <div id="header"></div>
+            <!-- Content -->
+            <div class="content">
+                <!-- Bread crumb -->
+                <ul class="breadcrumb">
+                    <li>
+                        <a
+                            href="/"
+                            class="breadcrumb__link breadcrumb__link--home"
+                        >
+                            Trang chủ
+                        </a>
+                        <span class="breadcrumb__separate">/</span>
+                    </li>
+                    <li>
+                        <a href="#!" class="breadcrumb__link">Giỏ hàng</a>
+                    </li>
+                </ul>
+                <!-- Table -->
+                <h1 class="cart-heading">GIỎ HÀNG</h1>
+                <div class="cart-wrapper">
+                    <!-- Product List -->
+                    <form action="" method="post">
+                        <table class="cart-table" cellspacing="0">
+                            <thead class="cart-head">
+                                <tr>
+                                    <th class="cart-head__img">Ảnh sản phẩm</th>
+                                    <th class="cart-head__name">
+                                        Tên sản phẩm
+                                    </th>
+                                    <th class="cart-head__price">Đơn giá</th>
+                                    <th class="cart-head__quantity">
+                                        Số lượng
+                                    </th>
+                                    <th class="cart-head__money">Thành tiền</th>
+                                    <th class="cart-head__trash-can">Xoá</th>
+                                </tr>
+                            </thead>
+                            <tbody class="card-body">
+                                <!-- Item 1 -->
+                                <tr>
+                                    <td style="width: 188px; height: 140px">
+                                        <div class="cart-body__img">
+                                            <a
+                                                class="cart-body__link"
+                                                href="#!"
+                                            >
+                                                <img
+                                                    class="cart-body__thumb"
+                                                    src="https://bizweb.dktcdn.net/thumb/compact/100/091/133/products/2-382751d6-ebd4-477c-83d5-5045a3a23999.jpg"
+                                                    alt=""
+                                                />
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h3 class="cart-body__name">
+                                            Giày tây nâu đỏ thương hiệu Converse
+                                            All Star
+                                        </h3>
+                                        <span class="cart-body__color"
+                                            >Nâu</span
+                                        >
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-price">
+                                            <span class="cart-body__prices"
+                                                >500.000₫</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-btn">
+                                            <button
+                                                class="cart-body-btn__increase"
+                                                type=""
+                                            >
+                                                +
+                                            </button>
+                                            <input
+                                                class="cart-body-btn__quantity"
+                                                type="text"
+                                                name="number"
+                                                id="number"
+                                                value="1"
+                                            />
+                                            <button
+                                                class="cart-body-btn__reduce"
+                                                type=""
+                                            >
+                                                -
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-price">
+                                            <span class="cart-body__prices"
+                                                >500.000₫</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-delete">
+                                            <a
+                                                class="cart-body-delete__item"
+                                                href=""
+                                            >
+                                                <i
+                                                    class="fa-solid fa-trash-can"
+                                                ></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Item 2 -->
+                                <tr>
+                                    <td style="width: 188px; height: 140px">
+                                        <div class="cart-body__img">
+                                            <a
+                                                class="cart-body__link"
+                                                href="#!"
+                                            >
+                                                <img
+                                                    class="cart-body__thumb"
+                                                    src="https://bizweb.dktcdn.net/thumb/compact/100/091/133/products/4-b9fc7b6b-6819-4462-845d-98f35edfae96.jpg"
+                                                    alt=""
+                                                />
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h3 class="cart-body__name">
+                                            Giày Converse by John Varvatos
+                                        </h3>
+                                        <span class="cart-body__color"
+                                            >Xanh</span
+                                        >
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-price">
+                                            <span class="cart-body__prices"
+                                                >500.000₫</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-btn">
+                                            <button
+                                                class="cart-body-btn__increase"
+                                                type=""
+                                            >
+                                                +
+                                            </button>
+                                            <input
+                                                class="cart-body-btn__quantity"
+                                                type="text"
+                                                name="number"
+                                                id="number"
+                                                value="1"
+                                            />
+                                            <button
+                                                class="cart-body-btn__reduce"
+                                                type=""
+                                            >
+                                                -
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-price">
+                                            <span class="cart-body__prices"
+                                                >500.000₫</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart-body-delete">
+                                            <a
+                                                class="cart-body-delete__item"
+                                                href=""
+                                            >
+                                                <i
+                                                    class="fa-solid fa-trash-can"
+                                                ></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <!-- Cart into money -->
+                    <div class="cart-rows">
+                        <div class="cart-item">
+                            <strong class="cart-item__info">Tổng tiền</strong>
+                        </div>
+                        <div class="cart-item">
+                            <p class="cart-item__price">1.000.000₫</p>
+                        </div>
+                        <button type="" class="cart-cta">
+                            Tiến hành thanh toán
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div id="footer"></div>
+            <!-- Load data -->
+            <script src="../../layout/loadContent.js"></script>
+        </div>
+    </body>
+</html>
