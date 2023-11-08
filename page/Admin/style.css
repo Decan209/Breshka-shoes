@@ -10,14 +10,41 @@ a {
 
 .container {
     font-family: "Roboto", sans-serif;
+    max-width: none !important;
 }
 
 .content {
     padding-bottom: 30px;
     max-width: 1300px;
     margin: 0 auto;
-    height: 300px;
+}
+
+.tabs-container{
+    margin: 30px;
+}
+
+.tabs{
+    background: #fff;
+}
+.tabs-content{
+    margin: 30px;
+}
+
+.img-product-table{
+    width: 80px;
+    height: 80px;
+}
+.add-product{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
+    margin: 10px 0;
+}
+th{
+    vertical-align: middle;
+}
+td{
+    vertical-align: middle;
+}
+#deleteProductName{
+    font-weight: bold;
 }

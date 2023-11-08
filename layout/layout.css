@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+#header{
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 100; 
+}
 header {
   display: flex;
   justify-content: space-between;

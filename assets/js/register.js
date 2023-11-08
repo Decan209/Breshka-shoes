@@ -17,16 +17,14 @@ const registerUser = () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const phone = document.getElementById("phone").value;
-  const fistName = document.getElementById("fistName").value;
-  const lastName = document.getElementById("lastName").value;
+  const fullName = document.getElementById("fullName").value;
 
   let isValid = true;
 
   document.getElementById("emailError").textContent = "";
   document.getElementById("passwordError").textContent = "";
   document.getElementById("phoneError").textContent = "";
-  document.getElementById("fistNameError").textContent = "";
-  document.getElementById("lastNameError").textContent = "";
+  document.getElementById("fullNameError").textContent = "";
 
   if (!emailIsValid(email)) {
     document.getElementById("emailError").textContent = "Email không hợp lệ.";
@@ -45,15 +43,9 @@ const registerUser = () => {
     isValid = false;
   }
 
-  if (!nameIsValid(fistName)) {
+  if (!nameIsValid(fullName)) {
     document.getElementById("fistNameError").textContent =
-      "Tên không được chứa ký tự đặc biệt hoặc số.";
-    isValid = false;
-  }
-
-  if (!nameIsValid(lastName)) {
-    document.getElementById("lastNameError").textContent =
-      "Họ không được chứa ký tự đặc biệt hoặc số.";
+      "Họ tên không được chứa ký tự đặc biệt hoặc số.";
     isValid = false;
   }
 
@@ -62,15 +54,9 @@ const registerUser = () => {
     isValid = false;
   }
 
-  if (!fistName) {
+  if (!fullName) {
     document.getElementById("fistNameError").textContent =
-      "Tên không được bỏ trống.";
-    isValid = false;
-  }
-
-  if (!lastName) {
-    document.getElementById("lastNameError").textContent =
-      "Họ không được bỏ trống.";
+      "Họ tên không được bỏ trống.";
     isValid = false;
   }
 
@@ -78,8 +64,7 @@ const registerUser = () => {
     const data = {
       email: email,
       password: password,
-      fist_name: fistName,
-      last_name: lastName,
+      full_name: fullName,
       phone: phone,
     };
 

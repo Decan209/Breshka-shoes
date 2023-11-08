@@ -38,6 +38,7 @@ const setHeaderUser = () => {
     const btnAdmin = document.getElementById("btnAdmin");
     const infoUser = document.getElementById('infoUser');
     const userName = document.getElementById('userName')
+
   
     if (email && name) {
       userName.textContent = name;

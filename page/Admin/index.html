@@ -1,42 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="icon"
-            href="//bizweb.dktcdn.net/100/091/133/themes/880367/assets/favicon.png?1676015027577"
-            type="image/x-icon"
-        />
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="../../layout/layout.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,200;1,300&family=Roboto:wght@300;400&family=Secular+One&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <title>Quản trị hệ thống</title>
-    </head>
-    <body>
-        <div class="container">
-            <!-- Header -->
-            <div id="header"></div>
-            <!-- Content -->
-            <div class="content">
-                Quản trị hệ thống
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="//bizweb.dktcdn.net/100/091/133/themes/880367/assets/favicon.png?1676015027577"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../layout/layout.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,200;1,300&family=Roboto:wght@300;400&family=Secular+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css"
+    />
+    <title>Quản trị hệ thống</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div id="header"></div>
+      <!-- Content -->
+      <div class="content">
+        <nav class="tabs-container">
+          <div class="nav nav-tabs tabs" id="nav-tab" role="tablist">
+            <button
+              class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-home"
+              type="button"
+              role="tab"
+              aria-controls="nav-home"
+              aria-selected="true"
+            >
+              Quản lý sản phẩm
+            </button>
+            <button
+              class="nav-link"
+              id="nav-admin-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-admin"
+              type="button"
+              role="tab"
+              aria-controls="nav-admin"
+              aria-selected="false"
+            >
+              Quản lý tài khoản nhân viên
+            </button>
+            <button
+              class="nav-link"
+              id="nav-user-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-user"
+              type="button"
+              role="tab"
+              aria-controls="nav-user"
+              aria-selected="false"
+            >
+              Quản lý tài khoản khách hàng
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content tabs-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="nav-home"
+            role="tabpanel"
+            aria-labelledby="nav-home-tab"
+          >
+            <div class="add-product">
+              <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#createModal"
+              >
+                Thêm mới sản phẩm
+              </button>
             </div>
-            <!-- Footer -->
-            <div id="footer"></div>
-            <script src="../../layout/loadContent.js"></script>
+            <table class="table" id="table-product">
+              <thead>
+                <tr>
+                  <th scope="col">Mã sản phẩm</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Hình ảnh</th>
+                  <th scope="col">Khuyến mại</th>
+                  <th scope="col">Giá niêm yết</th>
+                  <th scope="col">Giá bán</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Hành động</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-admin"
+            role="tabpanel"
+            aria-labelledby="nav-admin-tab"
+          >
+            <div class="add-product">
+              <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#createAdminModal"
+              >
+                Thêm mới nhân viên
+              </button>
+            </div>
+            <table class="table" id="table-admin">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Họ Tên</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">SĐT</th>
+                  <th scope="col">Trạng thái</th>
+                  <th scope="col">Ngày tạo</th>
+                  <th scope="col">Hành động</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-user"
+            role="tabpanel"
+            aria-labelledby="nav-user-tab"
+          >
+            <table class="table" id="table-user">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Họ Tên</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">SĐT</th>
+                  <th scope="col">Ngày tạo</th>
+                  <th scope="col">Hành động</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
-    </body>
+
+        <!-- Modal add product -->
+        <div
+          class="modal fade"
+          id="createModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tạo sản phẩm</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <div class="mb-4 d-flex justify-content-center">
+                    <img
+                      id="selectedImage"
+                      src="https://researchcoach.co.uk/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png"
+                      alt="example placeholder"
+                      style="width: 300px"
+                      onclick="openFileSelection()"
+                    />
+                  </div>
+                  <div class="d-none justify-content-center">
+                    <div class="btn btn-primary btn-rounded">
+                      <label class="form-label text-white m-1" for="customFile1"
+                        >Choose file</label
+                      >
+                      <input
+                        type="file"
+                        class="form-control d-block"
+                        id="customFile1"
+                        accept="image/*"
+                        onchange="displaySelectedImage(event, 'selectedImage')"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="productName"
+                      placeholder="Nhập tên sản phẩm"
+                    />
+                    <label for="productName">Tên sản phẩm</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="productPrice"
+                      placeholder="Giá"
+                    />
+                    <label for="productPrice">Giá niêm yết (vnđ)</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="productPromotion"
+                      placeholder="Khuyến mại"
+                    />
+                    <label for="productPromotion">Khuyến mại (%)</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="productQuantity"
+                      placeholder="Số lượng"
+                    />
+                    <label for="productQuantity">Số lượng</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      id="productCategory"
+                    >
+                      <option selected>Chọn loại sản phẩm</option>
+                      <option value="1">Sandal</option>
+                      <option value="2">Giày tây</option>
+                      <option value="3">Giày casula</option>
+                      <option value="4">Giày lười</option>
+                      <option value="5">Giày cao cổ</option>
+                      <option value="5">Giày đi chơi</option>
+                    </select>
+                    <label for="productPromotion">Loại sản phẩm</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  id="hiddenDismissButton"
+                >
+                  Hủy
+                </button>
+                <button
+                  onclick="addProduct()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Thêm mới
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal add product -->
+
+        <!-- Modal update product -->
+        <div
+          class="modal fade"
+          id="updateModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Cập nhật sản phẩm
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <div class="mb-4 d-flex justify-content-center">
+                    <img
+                      id="selectedImageUpdate"
+                      src="https://researchcoach.co.uk/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png"
+                      alt="example placeholder"
+                      style="width: 300px"
+                      onclick="openFileSelection()"
+                    />
+                  </div>
+                  <div class="d-none justify-content-center">
+                    <div class="btn btn-primary btn-rounded">
+                      <label class="form-label text-white m-1" for="customFile1"
+                        >Choose file</label
+                      >
+                      <input
+                        type="file"
+                        class="form-control d-none"
+                        id="customFile1"
+                        accept="image/*"
+                        onchange="displaySelectedImage(event, 'selectedImageUpdate')"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="updateProductName"
+                      placeholder="Nhập tên sản phẩm"
+                    />
+                    <label for="updateProductName">Tên sản phẩm</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="updateProductPrice"
+                      placeholder="Giá"
+                    />
+                    <label for="updateProductPrice">Giá niêm yết (vnđ)</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="updateProductSale"
+                      placeholder="Khuyến mại"
+                    />
+                    <label for="updateProductSale">Khuyến mại (%)</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="updateProductQuantity"
+                      placeholder="Số lượng"
+                    />
+                    <label for="updateProductQuantity">Số lượng</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <select
+                      class="form-select"
+                      aria-label="Default select example"
+                      id="updateProductCategory"
+                      aria-placeholder="Chọn loại sản phẩm"
+                    >
+                      <option value="1">Sandal</option>
+                      <option value="2">Giày tây</option>
+                      <option value="3">Giày casula</option>
+                      <option value="4">Giày lười</option>
+                      <option value="5">Giày cao cổ</option>
+                      <option value="5">Giày đi chơi</option>
+                    </select>
+                    <label for="updateProductCategory">Loại sản phẩm</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Hủy
+                </button>
+                <button type="button" class="btn btn-primary">Lưu</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal update product -->
+
+        <!-- Modal delete product -->
+        <div
+          class="modal fade"
+          id="deleteProductModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa sản phẩm</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sản phẩm
+                <span id="deleteProductName">này</span> không?
+              </div>
+              <div class="modal-footer">
+                <button
+                  id="closeModalDeleteProduct"
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Hủy
+                </button>
+                <button
+                  onclick="deleteProductAction()"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  Xóa
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal delete product -->
+
+        <!-- Create admin modal -->
+        <div
+          class="modal fade"
+          id="createAdminModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Thêm nhân viên
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="adminName"
+                      placeholder="Nhập họ tên"
+                    />
+                    <label for="adminName">Họ tên</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="adminEmail"
+                      placeholder="Email"
+                    />
+                    <label for="adminEmail">Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="adminPhone"
+                      placeholder="Số điện thoại"
+                    />
+                    <label for="adminPhone">Số điện thoại</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="adminPassword"
+                      placeholder="Mật khẩu"
+                    />
+                    <label for="adminPassword">Mật khẩu</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  id="hiddenDismissButtonAdmin"
+                >
+                  Hủy
+                </button>
+                <button
+                  onclick="addAdmin()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Thêm mới
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Create admin modal -->
+
+        <!-- Update admin modal -->
+        <div
+          class="modal fade"
+          id="updateAdminModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Cập nhật nhân viên
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="updateAdminName"
+                      placeholder="Nhập họ tên"
+                    />
+                    <label for="updateAdminName">Họ tên</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="updateAdminEmail"
+                      placeholder="Email"
+                    />
+                    <label for="updateAdminEmail">Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="updateAdminPhone"
+                      placeholder="Số điện thoại"
+                    />
+                    <label for="updateAdminPhone">Số điện thoại</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="updateAdminPassword"
+                      placeholder="Mật khẩu"
+                    />
+                    <label for="updateAdminPassword">Mật khẩu mới</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  id="hiddenUpdateAdminModal"
+                >
+                  Hủy
+                </button>
+                <button
+                  onclick="updateAdmin()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Cập nhật
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Update admin modal -->
+      </div>
+      <!-- Footer -->
+      <div id="footer"></div>
+      <script src="../../layout/loadContent.js"></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"
+      ></script>
+      <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+      <script src="../../assets/js/product.js"></script>
+      <script src="../../assets/js/user.js"></script>
+    </div>
+  </body>
 </html>

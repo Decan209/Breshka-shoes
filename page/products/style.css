@@ -253,10 +253,22 @@
     color: #35c0c5;
   }
   .product-new-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-price-sale{
     margin: 10px 0;
     color: #35c0c5;
     font-weight: 600;
     text-align: center;
+    margin-left: 8px;
+  }
+  .product-price-default{
+    color: #acacac;
+    text-decoration: line-through;
+    font-size: 14px;
+    font-weight: 400;
   }
   .product-new-btn {
     display: flex;

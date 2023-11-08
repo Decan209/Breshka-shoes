@@ -55,9 +55,9 @@ const loginUser = () => {
         localStorage.setItem("userName", data.name);
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("userPhone", data.phone);
-        localStorage.setItem("userProtected", data.protected);
+        localStorage.setItem("userProtected", data.is_admin);
 
-        if (data.protected === 1) {
+        if (data.is_admin === 1) {
             window.location.href = "/page/Admin/index.html";
         } else {
           window.location.href = "/";
