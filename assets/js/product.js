@@ -4,7 +4,7 @@ const formatPrice = (price) => {
 };
 
 const openFileSelection = () => {
-  document.getElementById("customFile1").click();
+  document.getElementById("imageFile").click();
 };
 
 const displaySelectedImage = (event, targetId) => {
@@ -13,7 +13,6 @@ const displaySelectedImage = (event, targetId) => {
 
   if (file) {
     const reader = new FileReader();
-
     reader.onload = function (e) {
       selectedImage.src = e.target.result;
     };
@@ -25,13 +24,39 @@ const displaySelectedImage = (event, targetId) => {
   }
 };
 
-const updateProduct = (id, name, price, sale, quantity, type, image) => {
+const openFileSelectionUpdate = () => {
+  document.getElementById("imageFileUpdate").click();
+};
+
+const displaySelectedImageUpdate = (event) => {
+  const file = event.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+    
+      document.getElementById("selectedImageUpdate").src = e.target.result
+    };
+
+    reader.readAsDataURL(file);
+  } else {
+    selectedImage.src =
+      "https://researchcoach.co.uk/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png";
+  }
+};
+
+
+let productId
+const showModalUpdateProduct = (id, name, price, sale, quantity, type, image) => {
+
   document.getElementById("updateProductName").value = name;
   document.getElementById("updateProductPrice").value = price;
   document.getElementById("updateProductSale").value = sale;
   document.getElementById("updateProductQuantity").value = quantity;
   document.getElementById("updateProductCategory").value = type;
   document.getElementById("selectedImageUpdate").src = image;
+  document.getElementById("imageFileUpdate").value = "";
+  productId = id
 };
 
 let deleteData = {};
@@ -82,7 +107,7 @@ const getListProduct = () => {
           Xóa
         </button>
         <button
-          onclick="updateProduct(${element.id}, '${element.name}', ${
+          onclick="showModalUpdateProduct(${element.id}, '${element.name}', ${
           element.price
         }, ${element.sale}, ${element.quantity}, '${element.type}' ,'${
           element.image
@@ -118,7 +143,7 @@ const addProduct = () => {
   formData.append("quantity", productQuantity);
   formData.append("sale", productPromotion);
   formData.append("type", productCategory);
-  formData.append("image", document.getElementById("customFile1").files[0]);
+  formData.append("image", document.getElementById("imageFile").files[0]);
 
   fetch("http://127.0.0.1:8000/api/product", {
     method: "POST",
@@ -128,6 +153,59 @@ const addProduct = () => {
       if (!response.ok) {
         Toastify({
           text: "Thêm mới thất bại",
+          backgroundColor: "red",
+        }).showToast();
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      Toastify({
+        text: data.message,
+        backgroundColor: "green",
+      }).showToast();
+      const table = document.getElementById("table-product");
+      while (table.rows.length > 1) {
+        table.deleteRow(1);
+      }
+      getListProduct();
+      hiddenDismissButton.click();
+      document.getElementById("productName").value = '';
+      document.getElementById("productPrice").value = '';
+      document.getElementById("productPromotion").value = '';
+      document.getElementById("productQuantity").value = '';
+      document.getElementById("productCategory").value = '';
+    })
+    .catch((error) => {
+      console.error("Lỗi:", error);
+    });
+};
+
+const updateProduct = () => {
+  const hiddenDismissButton = document.getElementById("hiddenButtonSave");
+
+  const productName = document.getElementById("updateProductName").value;
+  const productPrice = document.getElementById("updateProductPrice").value;
+  const productPromotion = document.getElementById("updateProductSale").value;
+  const productQuantity = document.getElementById("updateProductQuantity").value;
+  const productCategory = document.getElementById("updateProductCategory").value;
+
+  const formData = new FormData();
+  formData.append("name", productName);
+  formData.append("price", productPrice);
+  formData.append("quantity", productQuantity);
+  formData.append("sale", productPromotion);
+  formData.append("type", productCategory);
+  formData.append("image", document.getElementById("imageFileUpdate").files[0]);
+
+  fetch(`http://127.0.0.1:8000/api/product/${productId}`, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        Toastify({
+          text: "Cập nhật sản phẩm thất bại",
           backgroundColor: "red",
         }).showToast();
         throw new Error("Network response was not ok");

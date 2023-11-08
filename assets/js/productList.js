@@ -1,22 +1,22 @@
 const formatPrice = (price) => {
-    const priceToNumber = parseInt(price);
-    return priceToNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+  const priceToNumber = parseInt(price);
+  return priceToNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
 
 const getListProduct = () => {
-    const card = document.querySelector(".list-product-new");
-    let cardHtml = '';
-  console.log(card);
-    fetch("http://127.0.0.1:8000/api/product")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        data.forEach((element) => {
-            cardHtml += `
+  const card = document.querySelector(".list-product-new");
+  let cardHtml = "";
+
+  fetch("http://127.0.0.1:8000/api/product")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      data.forEach((element) => {
+        cardHtml += `
             <div class="product-new-item">
             <div class="product-new-sale">- ${element.sale}%</div>
             <img
@@ -26,11 +26,17 @@ const getListProduct = () => {
             />
             <div class="product-new-name">${element.name}</div>
             <div class="product-new-price">
-              <div class="product-price-default">${formatPrice(element.price)}₫</div>
-              <div class="product-price-sale">${formatPrice(element.price - element.price * (element.sale / 100))}₫</div>
+              <div class="product-price-default">${formatPrice(
+                element.price
+              )}₫</div>
+              <div class="product-price-sale">${formatPrice(
+                element.price - element.price * (element.sale / 100)
+              )}₫</div>
             </div>
             <div class="product-new-btn">
-              <button class="product-buy-btn">MUA HÀNG</button>
+              <a href='/page/detail/index.html?id=${element.id}'>
+                <button class="product-buy-btn">MUA HÀNG</button>
+              </a>
               <button class="product-new-eye">
                 <svg
                   width="20px"
@@ -67,12 +73,12 @@ const getListProduct = () => {
             </div>
           </div>
         `;
-        });
-        card.innerHTML = cardHtml
-      })
-      .catch((error) => {
-        console.error("Lỗi:", error);
       });
-  };
+      card.innerHTML = cardHtml;
+    })
+    .catch((error) => {
+      console.error("Lỗi:", error);
+    });
+};
 
-  getListProduct()
+getListProduct();

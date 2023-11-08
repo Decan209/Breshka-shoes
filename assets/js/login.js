@@ -52,6 +52,7 @@ const loginUser = () => {
           text: data.message,
           backgroundColor: "green",
         }).showToast();
+        localStorage.setItem("userId", data.id);
         localStorage.setItem("userName", data.name);
         localStorage.setItem("userEmail", data.email);
         localStorage.setItem("userPhone", data.phone);

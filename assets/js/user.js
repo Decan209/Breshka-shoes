@@ -11,7 +11,6 @@ const formatCreatedAt = (createdAtString) => {
 };
 
 const clearTableAndLoadData = async()=> {
-    console.log("test");
     const tableAdmin = document.getElementById("table-admin");
     const tableUser = document.getElementById("table-user");
 
@@ -157,6 +156,10 @@ const addAdmin = () => {
       }
       getListAdmin();
       hiddenDismissButton.click();
+      document.getElementById("adminName").value = "";
+      document.getElementById("adminEmail").value = "";
+      document.getElementById("adminPhone").value = "";
+      document.getElementById("adminPassword").value = "";
     })
     .catch((error) => {
       console.error("Lỗi:", error);

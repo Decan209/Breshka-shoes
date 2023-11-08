@@ -197,13 +197,13 @@
                   </div>
                   <div class="d-none justify-content-center">
                     <div class="btn btn-primary btn-rounded">
-                      <label class="form-label text-white m-1" for="customFile1"
+                      <label class="form-label text-white m-1" for="imageFile"
                         >Choose file</label
                       >
                       <input
                         type="file"
                         class="form-control d-block"
-                        id="customFile1"
+                        id="imageFile"
                         accept="image/*"
                         onchange="displaySelectedImage(event, 'selectedImage')"
                       />
@@ -254,7 +254,7 @@
                       <option selected>Chọn loại sản phẩm</option>
                       <option value="1">Sandal</option>
                       <option value="2">Giày tây</option>
-                      <option value="3">Giày casula</option>
+                      <option value="3">Giày thể thao</option>
                       <option value="4">Giày lười</option>
                       <option value="5">Giày cao cổ</option>
                       <option value="5">Giày đi chơi</option>
@@ -314,20 +314,20 @@
                       src="https://researchcoach.co.uk/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png"
                       alt="example placeholder"
                       style="width: 300px"
-                      onclick="openFileSelection()"
+                      onclick="openFileSelectionUpdate()"
                     />
                   </div>
                   <div class="d-none justify-content-center">
                     <div class="btn btn-primary btn-rounded">
-                      <label class="form-label text-white m-1" for="customFile1"
-                        >Choose file</label
+                      <label class="form-label text-white m-1" for="imageFileUpdate"
+                        >Cập nhật</label
                       >
                       <input
                         type="file"
                         class="form-control d-none"
-                        id="customFile1"
+                        id="imageFileUpdate"
                         accept="image/*"
-                        onchange="displaySelectedImage(event, 'selectedImageUpdate')"
+                        onchange="displaySelectedImageUpdate(event)"
                       />
                     </div>
                   </div>
@@ -390,10 +390,11 @@
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  id="hiddenButtonSave" 
                 >
                   Hủy
                 </button>
-                <button type="button" class="btn btn-primary">Lưu</button>
+                <button type="button" onclick="updateProduct()" class="btn btn-primary">Lưu</button>
               </div>
             </div>
           </div>
