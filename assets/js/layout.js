@@ -67,7 +67,11 @@ const setHeaderUser = () => {
   };
 
   const searchParams = () => {
+    console.log('test');
     const searchInput = document.getElementById("searchValue").value;
     let encodedSearch = encodeURIComponent(searchInput);
     window.location.href = `/page/search/index.html?q=${encodedSearch}`;
+  
+    return false;
   };
+  
