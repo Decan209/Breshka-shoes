@@ -33,8 +33,8 @@ const setHeaderUser = () => {
   const btnLogout = document.getElementById("btnLogout");
   const btnRegister = document.getElementById("btnRegister");
   const btnAdmin = document.getElementById("btnAdmin");
-  const infoUser = document.getElementById('infoUser');
-  const userName = document.getElementById('userName')
+  const infoUser = document.getElementById("infoUser");
+  const userName = document.getElementById("userName");
 
   if (email && name) {
     userName.textContent = name;
@@ -47,7 +47,7 @@ const setHeaderUser = () => {
 
   if (parseInt(protected) === 1) {
     btnAdmin.style.display = "block";
-  } else{
+  } else {
     btnAdmin.style.display = "none";
   }
 
@@ -62,3 +62,11 @@ const setHeaderUser = () => {
   });
 };
 
+const searchParams = () => {
+  console.log('test');
+  const searchInput = document.getElementById("searchValue").value;
+  let encodedSearch = encodeURIComponent(searchInput);
+  window.location.href = `/page/search/index.html?q=${encodedSearch}`;
+
+  return false;
+};

@@ -57,18 +57,6 @@ const getDetailProduct = () => {
             <span class="product-info__desc">Xuất xứ: Mỹ</span>
           </div>
           <!-- Product color -->
-          <div class="product-info-colors">
-            <form action="" method="post">
-              <label for="" class="product-info-colors__title"
-                >Màu sắc</label
-              >
-              <select name="" id="" class="product-info-colors__choise">
-                <option value="brown">Nâu</option>
-                <option value="green">Xanh</option>
-                <option value="red">Đỏ</option>
-              </select>
-            </form>
-          </div>
           <!-- quantity list -->
           <div class="product-info-wrapper">
             <!-- quantity -->

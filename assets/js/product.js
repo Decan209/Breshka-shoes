@@ -66,11 +66,18 @@ const deleteProduct = (id, name) => {
   deleteData.id = id;
 };
 
+const productsPerPage = 2;
+let currentPage = 1;
+let totalPages = 1;
 
-const getListProduct = () => {
+const getListProduct = (page, pageSize) => {
   const table = document.getElementById("table-product");
 
-  fetch("http://127.0.0.1:8000/api/product")
+  while (table.rows.length > 0) {
+    table.deleteRow(0);
+  }
+
+  fetch(`http://127.0.0.1:8000/api/product?page=${page}&pageSize=${pageSize}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -78,7 +85,9 @@ const getListProduct = () => {
       return response.json();
     })
     .then((data) => {
-      data.forEach((element) => {
+      totalPages = data.totalPages;
+
+      data.data.forEach((element) => {
         const newRow = table.insertRow();
         newRow.innerHTML = `
       <th scope="row">${element.id}</th>
@@ -122,11 +131,69 @@ const getListProduct = () => {
       </td>
       `;
       });
+
+      createPagination(totalPages, page);
     })
     .catch((error) => {
       console.error("Lỗi:", error);
     });
 };
+
+const createPagination = (totalPages, currentPage) => {
+  const paginationContainer = document.getElementById("pagination");
+  paginationContainer.innerHTML = "";
+
+  const prevButton = createPaginationButton("Trước", currentPage - 1);
+  paginationContainer.appendChild(prevButton);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = createPaginationButton(i, i);
+    if (i === currentPage) {
+      pageButton.classList.add("active");
+    }
+    paginationContainer.appendChild(pageButton);
+  }
+
+  const nextButton = createPaginationButton("Sau", currentPage + 1);
+  paginationContainer.appendChild(nextButton);
+};
+
+const createPaginationButton = (label, page) => {
+  const li = document.createElement("li");
+  li.classList.add("page-item");
+
+  const button = document.createElement("button");
+  button.classList.add("page-link");
+  button.textContent = label;
+
+  button.addEventListener("click", () => {
+    if (page >= 1 && page <= totalPages) {
+      currentPage = page;
+      getListProduct(currentPage, productsPerPage);
+    }
+  });
+
+  li.appendChild(button);
+  return li;
+};
+
+fetch("http://127.0.0.1:8000/api/product")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    totalPages = data.totalPages;
+
+    createPagination(totalPages, currentPage);
+
+    getListProduct(currentPage, productsPerPage);
+  })
+  .catch((error) => {
+    console.error("Lỗi:", error);
+});
 
 const addProduct = () => {
   const hiddenDismissButton = document.getElementById("hiddenDismissButton");
@@ -264,4 +331,4 @@ const deleteProductAction = () => {
     });
 };
 
-getListProduct();
+

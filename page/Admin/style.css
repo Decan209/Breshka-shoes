@@ -48,3 +48,8 @@ td{
 #deleteProductName{
     font-weight: bold;
 }
+.pagination{
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}

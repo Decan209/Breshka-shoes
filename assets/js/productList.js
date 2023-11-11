@@ -3,11 +3,15 @@ const formatPrice = (price) => {
   return priceToNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
-const getListProduct = () => {
+const productsPerPage = 3;
+let currentPage = 1;
+let totalPages = 1;
+
+const getListProduct = (page, pageSize) => {
   const card = document.querySelector(".list-product-new");
   let cardHtml = "";
 
-  fetch("http://127.0.0.1:8000/api/product")
+  fetch(`http://127.0.0.1:8000/api/product?page=${page}&pageSize=${pageSize}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -15,7 +19,9 @@ const getListProduct = () => {
       return response.json();
     })
     .then((data) => {
-      data.forEach((element) => {
+      totalPages = data.totalPages;
+
+      data.data.forEach((element) => {
         cardHtml += `
             <div class="product-new-item">
             <div class="product-new-sale">- ${element.sale}%</div>
@@ -75,10 +81,65 @@ const getListProduct = () => {
         `;
       });
       card.innerHTML = cardHtml;
+
+      createPagination(totalPages, page);
     })
     .catch((error) => {
       console.error("Lỗi:", error);
     });
 };
 
-getListProduct();
+const createPagination = (totalPages, currentPage) => {
+  const paginationContainer = document.getElementById("pagination");
+  paginationContainer.innerHTML = "";
+
+  const prevButton = createPaginationButton("Trước", currentPage - 1);
+  paginationContainer.appendChild(prevButton);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const pageButton = createPaginationButton(i, i);
+    if (i === currentPage) {
+      pageButton.classList.add("active");
+    }
+    paginationContainer.appendChild(pageButton);
+  }
+
+  const nextButton = createPaginationButton("Sau", currentPage + 1);
+  paginationContainer.appendChild(nextButton);
+};
+
+const createPaginationButton = (label, page) => {
+  const li = document.createElement("li");
+  li.classList.add("page-item");
+
+  const button = document.createElement("button");
+  button.classList.add("page-link");
+  button.textContent = label;
+
+  button.addEventListener("click", () => {
+    if (page >= 1 && page <= totalPages) {
+      currentPage = page;
+      getListProduct(currentPage, productsPerPage);
+    }
+  });
+
+  li.appendChild(button);
+  return li;
+};
+
+fetch("http://127.0.0.1:8000/api/product")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    totalPages = data.totalPages;
+    createPagination(totalPages, currentPage);
+
+    getListProduct(currentPage, productsPerPage);
+  })
+  .catch((error) => {
+    console.error("Lỗi:", error);
+  });

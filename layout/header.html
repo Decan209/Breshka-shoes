@@ -46,7 +46,7 @@
             </svg>
             <a class="title-header" href="tel:19006750">1900 6750</a>
           </div>
-          <div class="header-search">
+          <form onsubmit="return searchParams()" class="header-search">
             <button type="submit" class="btn-search">
               <svg
                 width="18px"
@@ -76,10 +76,10 @@
               type="text"
               placeholder="Tìm kiếm..."
               class="input-group-btn"
-              required=""
+              id="searchValue"
             />
-          </div>
-          <a class="btn-login"  id="btnLogin" href="/page/login/index.html">
+          </form>
+          <a class="btn-login" id="btnLogin" href="/page/login/index.html">
             <svg
               width="18px"
               height="18px"
@@ -227,7 +227,7 @@
           </a>
         </div>
       </header>
-      <nav>
+      <nav class="navbarHeader">
         <ul class="menu">
           <li><a href="/">TRANG CHỦ</a></li>
           <li><a href="/page/intro/index.html">GIỚI THIỆU</a></li>

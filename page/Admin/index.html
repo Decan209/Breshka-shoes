@@ -113,6 +113,11 @@
                 </tr>
               </thead>
             </table>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination" id="pagination"></ul>
+              </nav>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -319,7 +324,9 @@
                   </div>
                   <div class="d-none justify-content-center">
                     <div class="btn btn-primary btn-rounded">
-                      <label class="form-label text-white m-1" for="imageFileUpdate"
+                      <label
+                        class="form-label text-white m-1"
+                        for="imageFileUpdate"
                         >Cập nhật</label
                       >
                       <input
@@ -390,11 +397,17 @@
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
-                  id="hiddenButtonSave" 
+                  id="hiddenButtonSave"
                 >
                   Hủy
                 </button>
-                <button type="button" onclick="updateProduct()" class="btn btn-primary">Lưu</button>
+                <button
+                  type="button"
+                  onclick="updateProduct()"
+                  class="btn btn-primary"
+                >
+                  Lưu
+                </button>
               </div>
             </div>
           </div>
