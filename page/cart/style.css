@@ -16,6 +16,7 @@ a {
 
 .container {
     font-family: "Roboto", sans-serif;
+    max-width: none !important;
 }
 
 .content {
@@ -200,6 +201,7 @@ a {
     width: 184px;
     height: 60px;
     border: 1px solid #ebebeb;
+    margin: 0;
 }
 
 .cart-item__info {
@@ -230,6 +232,7 @@ a {
     margin-top: 20px;
     -moz-transition: all 0.3s linear;
     -webkit-transition: all 0.3s linear;
+    cursor: pointer;
 }
 
 .cart-cta:hover {
