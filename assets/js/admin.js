@@ -73,8 +73,10 @@ let totalPages = 1;
 const getListProduct = (page, pageSize) => {
   const table = document.getElementById("table-product");
 
-  while (table.rows.length > 0) {
-    table.deleteRow(0);
+  if (table.rows.length > 1) {
+    while (table.rows.length > 1) {
+      table.deleteRow(1);
+    }
   }
 
   fetch(`http://127.0.0.1:8000/api/product?page=${page}&pageSize=${pageSize}`)

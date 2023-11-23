@@ -80,6 +80,18 @@
             >
               Quản lý tài khoản khách hàng
             </button>
+            <button
+            class="nav-link"
+            id="nav-bill-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-bill"
+            type="button"
+            role="tab"
+            aria-controls="nav-user"
+            aria-selected="false"
+          >
+            Quản lý đơn hàng
+          </button>
           </div>
         </nav>
         <div class="tab-content tabs-content" id="nav-tabContent">
@@ -168,6 +180,26 @@
               </thead>
             </table>
           </div>
+          <div
+          class="tab-pane fade"
+          id="nav-bill"
+          role="tabpanel"
+          aria-labelledby="nav-bill-tab"
+        >
+          <table class="table" id="table-bill">
+            <thead>
+              <tr>
+                <th scope="col">Tên khách hàng</th>
+                <th scope="col">SĐT</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Ngày đặt hàng</th>
+                <th scope="col">Số tiền</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Hành động</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
         </div>
 
         <!-- Modal add product -->
@@ -643,8 +675,9 @@
         crossorigin="anonymous"
       ></script>
       <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-      <script src="../../assets/js/product.js"></script>
+      <script src="../../assets/js/admin.js"></script>
       <script src="../../assets/js/user.js"></script>
+      <script src="../../assets/js/bill.js"></script>
     </div>
   </body>
 </html>

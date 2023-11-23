@@ -3,6 +3,8 @@ const formatPrice = (price) => {
   return priceToNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
+
+let totalPr = 0;
 const getListCart = () => {
   const id = localStorage.getItem("userId");
 
@@ -13,7 +15,6 @@ const getListCart = () => {
   const billProduct = document.getElementById('billProduct');
 
   noData.textContent = "";
-  let totalPr = 0;
   let billHtml = ''
 
   fetch(`http://127.0.0.1:8000/api/cart/${id}`)
@@ -169,5 +170,49 @@ const removeProductCart = (id) => {
     console.error("Lỗi:", error);
   });
 }
+
+const oderBill = () => {
+  const user_id = localStorage.getItem("userId");
+  const address = document.getElementById("address").value;
+  const billCategory = document.getElementById("billCategory").value;
+  const hiddenUpdateAdminModal = document.getElementById("hiddenUpdateAdminModal");
+
+  const data ={
+    user_id: user_id,
+    address: address,
+    total: totalPr,
+    payment_option: billCategory
+  }
+
+  fetch(`http://127.0.0.1:8000/api/bill`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+})
+  .then((response) => {
+    if (!response.ok) {
+      Toastify({
+        text: "Đặt hàng thất bại",
+        backgroundColor: "red",
+      }).showToast();
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    Toastify({
+      text: data.message,
+      backgroundColor: "green",
+    }).showToast();
+    hiddenUpdateAdminModal.click();
+  })
+  .catch((error) => {
+    console.error("Lỗi:", error);
+  });
+}
+
+
 
 getListCart();
