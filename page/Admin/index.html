@@ -101,7 +101,11 @@
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-            <div class="add-product">
+            <div class="add-product d-flex justify-content-between">
+              <div class="input-group w-25">
+                <input id="searchProduct" type="search" class="form-control rounded" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" />
+                <button onclick="searchProduct()" type="button" class="btn btn-outline-primary" data-mdb-ripple-init>Tìm kiếm</button>
+              </div>
               <button
                 type="button"
                 class="btn btn-success"
@@ -137,7 +141,11 @@
             role="tabpanel"
             aria-labelledby="nav-admin-tab"
           >
-            <div class="add-product">
+            <div class="add-product d-flex justify-content-between">
+              <div class="input-group w-25 mb-3">
+                <input id="searchAdmin" type="search" class="form-control rounded" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" />
+                <button onclick="searchAdmin()" type="button" class="btn btn-outline-primary" data-mdb-ripple-init>Tìm kiếm</button>
+              </div>
               <button
                 type="button"
                 class="btn btn-success"
@@ -146,6 +154,7 @@
               >
                 Thêm mới nhân viên
               </button>
+
             </div>
             <table class="table" id="table-admin">
               <thead>
@@ -160,6 +169,11 @@
                 </tr>
               </thead>
             </table>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination" id="paginationAdmin"></ul>
+              </nav>
+            </div>
           </div>
           <div
             class="tab-pane fade"
@@ -167,6 +181,10 @@
             role="tabpanel"
             aria-labelledby="nav-user-tab"
           >
+          <div class="input-group w-25 mb-3">
+            <input id="searchUser" type="search" class="form-control rounded" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" />
+            <button onclick="searchUser()" type="button" class="btn btn-outline-primary" data-mdb-ripple-init>Tìm kiếm</button>
+          </div>
             <table class="table" id="table-user">
               <thead>
                 <tr>
@@ -179,6 +197,11 @@
                 </tr>
               </thead>
             </table>
+            <div class="pagination">
+              <nav aria-label="...">
+                <ul class="pagination" id="paginationUser"></ul>
+              </nav>
+            </div>
           </div>
           <div
           class="tab-pane fade"
@@ -412,12 +435,12 @@
                       id="updateProductCategory"
                       aria-placeholder="Chọn loại sản phẩm"
                     >
-                      <option value="1">Sandal</option>
-                      <option value="2">Giày tây</option>
-                      <option value="3">Giày casula</option>
-                      <option value="4">Giày lười</option>
-                      <option value="5">Giày cao cổ</option>
-                      <option value="5">Giày đi chơi</option>
+                    <option selected>Chọn loại sản phẩm</option>
+                    <option value="0">Sandal</option>
+                    <option value="1">Giày tây</option>
+                    <option value="2">Giày thể thao</option>
+                    <option value="3">Giày cao cổ</option>
+                    <option value="4">Sneaker</option>
                     </select>
                     <label for="updateProductCategory">Loại sản phẩm</label>
                   </div>

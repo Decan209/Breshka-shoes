@@ -34,8 +34,7 @@ const displaySelectedImageUpdate = (event) => {
   if (file) {
     const reader = new FileReader();
     reader.onload = function (e) {
-    
-      document.getElementById("selectedImageUpdate").src = e.target.result
+      document.getElementById("selectedImageUpdate").src = e.target.result;
     };
 
     reader.readAsDataURL(file);
@@ -45,10 +44,16 @@ const displaySelectedImageUpdate = (event) => {
   }
 };
 
-
-let productId
-const showModalUpdateProduct = (id, name, price, sale, quantity, type, image) => {
-
+let productId;
+const showModalUpdateProduct = (
+  id,
+  name,
+  price,
+  sale,
+  quantity,
+  type,
+  image
+) => {
   document.getElementById("updateProductName").value = name;
   document.getElementById("updateProductPrice").value = price;
   document.getElementById("updateProductSale").value = sale;
@@ -56,7 +61,7 @@ const showModalUpdateProduct = (id, name, price, sale, quantity, type, image) =>
   document.getElementById("updateProductCategory").value = type;
   document.getElementById("selectedImageUpdate").src = image;
   document.getElementById("imageFileUpdate").value = "";
-  productId = id
+  productId = id;
 };
 
 let deleteData = {};
@@ -66,11 +71,11 @@ const deleteProduct = (id, name) => {
   deleteData.id = id;
 };
 
-const productsPerPage = 2;
+const productsPerPage = 10;
 let currentPage = 1;
 let totalPages = 1;
 
-const getListProduct = (page, pageSize) => {
+const getListProduct = (page, pageSize, searchProduct = "") => {
   const table = document.getElementById("table-product");
 
   if (table.rows.length > 1) {
@@ -79,7 +84,7 @@ const getListProduct = (page, pageSize) => {
     }
   }
 
-  fetch(`http://127.0.0.1:8000/api/product?page=${page}&pageSize=${pageSize}`)
+  fetch(`http://127.0.0.1:8000/api/product?page=${page}&pageSize=${pageSize}&q=${searchProduct}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -141,6 +146,11 @@ const getListProduct = (page, pageSize) => {
     });
 };
 
+const searchProduct = () => {
+  const searchProduct = document.getElementById("searchProduct").value;
+  getListProduct(currentPage, productsPerPage, searchProduct);
+};
+
 const createPagination = (totalPages, currentPage) => {
   const paginationContainer = document.getElementById("pagination");
   paginationContainer.innerHTML = "";
@@ -195,7 +205,7 @@ fetch("http://127.0.0.1:8000/api/product")
   })
   .catch((error) => {
     console.error("Lỗi:", error);
-});
+  });
 
 const addProduct = () => {
   const hiddenDismissButton = document.getElementById("hiddenDismissButton");
@@ -237,13 +247,13 @@ const addProduct = () => {
       while (table.rows.length > 1) {
         table.deleteRow(1);
       }
-      getListProduct();
+     getListProduct(currentPage, productsPerPage);
       hiddenDismissButton.click();
-      document.getElementById("productName").value = '';
-      document.getElementById("productPrice").value = '';
-      document.getElementById("productPromotion").value = '';
-      document.getElementById("productQuantity").value = '';
-      document.getElementById("productCategory").value = '';
+      document.getElementById("productName").value = "";
+      document.getElementById("productPrice").value = "";
+      document.getElementById("productPromotion").value = "";
+      document.getElementById("productQuantity").value = "";
+      document.getElementById("productCategory").value = "";
     })
     .catch((error) => {
       console.error("Lỗi:", error);
@@ -256,8 +266,12 @@ const updateProduct = () => {
   const productName = document.getElementById("updateProductName").value;
   const productPrice = document.getElementById("updateProductPrice").value;
   const productPromotion = document.getElementById("updateProductSale").value;
-  const productQuantity = document.getElementById("updateProductQuantity").value;
-  const productCategory = document.getElementById("updateProductCategory").value;
+  const productQuantity = document.getElementById(
+    "updateProductQuantity"
+  ).value;
+  const productCategory = document.getElementById(
+    "updateProductCategory"
+  ).value;
 
   const formData = new FormData();
   formData.append("name", productName);
@@ -290,7 +304,7 @@ const updateProduct = () => {
       while (table.rows.length > 1) {
         table.deleteRow(1);
       }
-      getListProduct();
+      getListProduct(currentPage, productsPerPage);
       hiddenDismissButton.click();
     })
     .catch((error) => {
@@ -325,12 +339,10 @@ const deleteProductAction = () => {
       while (table.rows.length > 1) {
         table.deleteRow(1);
       }
-      getListProduct();
+     getListProduct(currentPage, productsPerPage);
       closeModalDeleteProduct.click();
     })
     .catch((error) => {
       console.error("Lỗi:", error);
     });
 };
-
-

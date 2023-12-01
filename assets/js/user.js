@@ -10,106 +10,23 @@ const formatCreatedAt = (createdAtString) => {
   return `${hours}:${minutes}:${seconds} - ${day}/${month}/${year}`;
 };
 
-const clearTableAndLoadData = async()=> {
-    const tableAdmin = document.getElementById("table-admin");
-    const tableUser = document.getElementById("table-user");
+const clearTableAndLoadData = async () => {
+  const tableAdmin = document.getElementById("table-admin");
+  const tableUser = document.getElementById("table-user");
 
-    while (tableAdmin.rows.length > 1 || tableUser.rows.length > 1) {
-        if (tableAdmin.rows.length > 1) {
-            tableAdmin.deleteRow(1);
-        }
-        if (tableUser.rows.length > 1) {
-            tableUser.deleteRow(1);
-        }
+  while (tableAdmin.rows.length > 1 || tableUser.rows.length > 1) {
+    if (tableAdmin.rows.length > 1) {
+      tableAdmin.deleteRow(1);
     }
+    if (tableUser.rows.length > 1) {
+      tableUser.deleteRow(1);
+    }
+  }
 
-    await getListAdmin();
-    await getListUser(); 
-}
-
-
-
-const getListAdmin = () => {
-  const table = document.getElementById("table-admin");
-
-  fetch("http://127.0.0.1:8000/api/admin")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      data.forEach((element) => {
-        const newRow = table.insertRow();
-        newRow.innerHTML = `
-        <th scope="row">${element.id}</th>
-        <td>${element.full_name}</td>
-        <td>${element.email}</td>
-        <td>${element.phone ? element.phone : ""}</td>
-        <td>${element.status === 1 ? "Hoạt động" : "Đã bị khóa"}</td>
-        <td>${formatCreatedAt(element.created_at)}</td>
-        <td>
-         ${
-           element.protected === 1
-             ? ""
-             : `
-             <button type="button" class="btn btn-warning" onclick="updateStatus(${
-               element.id
-             })">${element.status === 1 ? "Khóa" : "Mở khóa"}</button>
-            <button
-                type="button"
-                class="btn btn-success"
-                data-bs-toggle="modal"
-                data-bs-target="#updateAdminModal"
-                onclick="showModalUpdate(${element.id}, '${
-                 element.full_name
-               }', '${element.email}', '${element.phone}')"
-            >
-            Cập nhật
-            </button>`
-         }
-        </td>
-        `;
-      });
-    })
-    .catch((error) => {
-      console.error("Lỗi:", error);
-    });
+  await getListAdmin(currentPage, productsPerPage);;
+  await getListUser(currentPage, productsPerPage);
 };
 
-const getListUser = () => {
-  const table = document.getElementById("table-user");
-
-  fetch("http://127.0.0.1:8000/api/user")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      data.forEach((element) => {
-        const newRow = table.insertRow();
-        newRow.innerHTML = `
-          <th scope="row">${element.id}</th>
-          <td>${element.full_name}</td>
-          <td>${element.email}</td>
-          <td>${element.phone ? element.phone : ""}</td>
-          <td>${element.status === 1 ? "Hoạt động" : "Đã bị khóa"}</td>
-          <td>${formatCreatedAt(element.created_at)}</td>
-          <td>
-            <button type="button" class="btn btn-warning" onclick="updateStatus(${
-                element.id
-            })">${element.status === 1 ? "Khóa" : "Mở khóa"}</button>    
-          </td>
-          `;
-      });
-    })
-    .catch((error) => {
-      console.error("Lỗi:", error);
-    });
-};
 
 const addAdmin = () => {
   const hiddenDismissButton = document.getElementById(
@@ -154,7 +71,7 @@ const addAdmin = () => {
       while (table.rows.length > 1) {
         table.deleteRow(1);
       }
-      getListAdmin();
+      getListAdmin(currentPage, productsPerPage);
       hiddenDismissButton.click();
       document.getElementById("adminName").value = "";
       document.getElementById("adminEmail").value = "";
@@ -245,7 +162,7 @@ const updateAdmin = () => {
       while (table.rows.length > 1) {
         table.deleteRow(1);
       }
-      getListAdmin();
+      getListAdmin(currentPage, productsPerPage);
       hiddenDismissButton.click();
     })
     .catch((error) => {
@@ -253,40 +170,233 @@ const updateAdmin = () => {
     });
 };
 
-// const deleteProductAction = () => {
-//   const closeModalDeleteProduct = document.getElementById(
-//     "closeModalDeleteProduct"
-//   );
+const searchAdmin = () => {
+  const searchAdmin = document.getElementById("searchAdmin").value;
+  getListAdmin(currentPage, productsPerPage, searchAdmin);
+};
 
-//   fetch(`http://127.0.0.1:8000/api/product/${deleteData.id}`, {
-//     method: "DELETE",
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         Toastify({
-//           text: data.message,
-//           backgroundColor: "red",
-//         }).showToast();
-//         throw new Error("Network response was not ok");
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       Toastify({
-//         text: data.message,
-//         backgroundColor: "green",
-//       }).showToast();
-//       const table = document.getElementById("table-product");
-//       while (table.rows.length > 1) {
-//         table.deleteRow(1);
-//       }
-//       getListProduct();
-//       closeModalDeleteProduct.click();
-//     })
-//     .catch((error) => {
-//       console.error("Lỗi:", error);
-//     });
-// };
+const getListAdmin = (page, pageSize, searchAdmin = "") => {
+  const table = document.getElementById("table-admin");
 
-getListAdmin();
-getListUser();
+  if (table.rows.length > 1) {
+    while (table.rows.length > 1) {
+      table.deleteRow(1);
+    }
+  }
+
+  fetch(
+    `http://127.0.0.1:8000/api/admin?page=${page}&pageSize=${pageSize}&q=${searchAdmin}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      totalPagesAdmin = data.totalPages;
+
+      data.data.forEach((element) => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+        <th scope="row">${element.id}</th>
+        <td>${element.full_name}</td>
+        <td>${element.email}</td>
+        <td>${element.phone ? element.phone : ""}</td>
+        <td>${element.status === 1 ? "Hoạt động" : "Đã bị khóa"}</td>
+        <td>${formatCreatedAt(element.created_at)}</td>
+        <td>
+         ${
+           element.protected === 1
+             ? ""
+             : `
+             <button type="button" class="btn btn-warning" onclick="updateStatus(${
+               element.id
+             })">${element.status === 1 ? "Khóa" : "Mở khóa"}</button>
+            <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#updateAdminModal"
+                onclick="showModalUpdate(${element.id}, '${
+                 element.full_name
+               }', '${element.email}', '${element.phone}')"
+            >
+            Cập nhật
+            </button>`
+         }
+        </td>
+        `;
+      });
+
+      createPaginationAdmin(totalPagesAdmin, page);
+    })
+    .catch((error) => {
+      console.error("Lỗi:", error);
+    });
+};
+
+const createPaginationAdmin = (totalPagesAdmin, currentPage) => {
+  const paginationContainer = document.getElementById("paginationAdmin");
+  paginationContainer.innerHTML = "";
+
+  const prevButton = createPaginationButtonAdmin("Trước", currentPage - 1);
+  paginationContainer.appendChild(prevButton);
+
+  for (let i = 1; i <= totalPagesAdmin; i++) {
+    const pageButton = createPaginationButtonAdmin(i, i);
+    if (i === currentPage) {
+      pageButton.classList.add("active");
+    }
+    paginationContainer.appendChild(pageButton);
+  }
+
+  const nextButton = createPaginationButtonAdmin("Sau", currentPage + 1);
+  paginationContainer.appendChild(nextButton);
+};
+
+const createPaginationButtonAdmin = (label, page) => {
+  const li = document.createElement("li");
+  li.classList.add("page-item");
+
+  const button = document.createElement("button");
+  button.classList.add("page-link");
+  button.textContent = label;
+
+  button.addEventListener("click", () => {
+    if (page >= 1 && page <= totalPagesAdmin) {
+      currentPage = page;
+      
+      getListAdmin(currentPage, productsPerPage);
+    }
+  });
+
+  li.appendChild(button);
+  return li;
+};
+
+fetch("http://127.0.0.1:8000/api/admin")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    totalPagesAdmin = data.totalPages;
+    createPaginationAdmin(totalPagesAdmin, currentPage);
+
+    getListAdmin(totalPagesAdmin, productsPerPage);
+  })
+  .catch((error) => {
+    console.error("Lỗi:", error);
+  });
+
+
+
+
+// User
+const searchUser = () => {
+  const searchUser = document.getElementById("searchUser").value;
+  getListUser(currentPage, productsPerPage, searchUser);
+};
+
+const getListUser = (page, pageSize, searchUser = "") => {
+  const table = document.getElementById("table-user");
+
+  if (table.rows.length > 1) {
+    while (table.rows.length > 1) {
+      table.deleteRow(1);
+    }
+  }
+
+  fetch(
+    `http://127.0.0.1:8000/api/user?page=${page}&pageSize=${pageSize}&q=${searchUser}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      totalPagesUser = data.totalPages;
+
+      data.data.forEach((element) => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+          <th scope="row">${element.id}</th>
+          <td>${element.full_name}</td>
+          <td>${element.email}</td>
+          <td>${element.phone ? element.phone : ""}</td>
+          <td>${element.status === 1 ? "Hoạt động" : "Đã bị khóa"}</td>
+          <td>${formatCreatedAt(element.created_at)}</td>
+          <td>
+            <button type="button" class="btn btn-warning" onclick="updateStatus(${
+              element.id
+            })">${element.status === 1 ? "Khóa" : "Mở khóa"}</button>    
+          </td>
+          `;
+      });
+
+      createPaginationUser(totalPagesUser, page);
+    })
+    .catch((error) => {
+      console.error("Lỗi:", error);
+    });
+};
+
+const createPaginationUser = (totalPagesUser, currentPage) => {
+  const paginationContainer = document.getElementById("paginationUser");
+  paginationContainer.innerHTML = "";
+
+  const prevButton = createPaginationUserButtonUser("Trước", currentPage - 1);
+  paginationContainer.appendChild(prevButton);
+
+  for (let i = 1; i <= totalPagesUser; i++) {
+    const pageButton = createPaginationUserButtonUser(i, i);
+    if (i === currentPage) {
+      pageButton.classList.add("active");
+    }
+    paginationContainer.appendChild(pageButton);
+  }
+
+  const nextButton = createPaginationUserButtonUser("Sau", currentPage + 1);
+  paginationContainer.appendChild(nextButton);
+};
+
+const createPaginationUserButtonUser = (label, page) => {
+  const li = document.createElement("li");
+  li.classList.add("page-item");
+
+  const button = document.createElement("button");
+  button.classList.add("page-link");
+  button.textContent = label;
+
+  button.addEventListener("click", () => {
+    if (page >= 1 && page <= totalPagesUser) {
+      currentPage = page;
+      getListUser(currentPage, productsPerPage);
+    }
+  });
+
+  li.appendChild(button);
+  return li;
+};
+
+fetch("http://127.0.0.1:8000/api/user")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    totalPagesUser = data.totalPages;
+    createPaginationUser(totalPagesUser, currentPage);
+
+    getListUser(currentPage, productsPerPage);
+  })
+  .catch((error) => {
+    console.error("Lỗi:", error);
+  });

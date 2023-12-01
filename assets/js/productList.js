@@ -3,7 +3,7 @@ const formatPrice = (price) => {
   return priceToNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
-const productsPerPage = 3;
+const productsPerPage = 9;
 let currentPage = 1;
 let totalPages = 1;
 
