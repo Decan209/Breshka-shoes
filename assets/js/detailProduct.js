@@ -11,6 +11,7 @@ const getDetailProduct = () => {
     let detailhtml = '';
 
     const detailProduct = document.getElementById('detailProduct');
+    const linkProduct = document.getElementById('link-product-detail');
   
     fetch(`http://127.0.0.1:8000/api/product/${id}`)
       .then((response) => {
@@ -20,6 +21,7 @@ const getDetailProduct = () => {
         return response.json();
       })
       .then((data) => {
+        linkProduct.textContent = data.name
         detailhtml += `
         <div class="product-row">
         <!-- Product media -->
