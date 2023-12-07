@@ -55,7 +55,7 @@ const addAdmin = () => {
     .then((response) => {
       if (!response.ok) {
         Toastify({
-          text: "Thêm tài khoản thất bại",
+          text: "Không thêm được nhân viên",
           backgroundColor: "red",
         }).showToast();
         throw new Error("Network response was not ok");
@@ -80,6 +80,10 @@ const addAdmin = () => {
     })
     .catch((error) => {
       console.error("Lỗi:", error);
+      Toastify({
+        text: "Không thêm được nhân viên",
+        backgroundColor: "red",
+      }).showToast();
     });
 };
 

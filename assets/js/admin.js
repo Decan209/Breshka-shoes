@@ -230,8 +230,9 @@ const addProduct = () => {
   })
     .then((response) => {
       if (!response.ok) {
+        console.log('tesst');
         Toastify({
-          text: "Thêm mới thất bại",
+          text: "Không thêm được sản phẩm",
           backgroundColor: "red",
         }).showToast();
         throw new Error("Network response was not ok");
@@ -257,6 +258,10 @@ const addProduct = () => {
     })
     .catch((error) => {
       console.error("Lỗi:", error);
+      Toastify({
+        text: "Không thêm được sản phẩm",
+        backgroundColor: "red",
+      }).showToast();
     });
 };
 

@@ -22,6 +22,17 @@ const loginUser = () => {
     isValid = false;
   }
 
+  if (!email) {
+    document.getElementById("emailError").textContent = "Không được bỏ trống Email";
+    isValid = false;
+  }
+
+  if (!password) {
+    document.getElementById("passwordError").textContent =
+      "Không được bỏ trống mật khẩu";
+    isValid = false;
+  }
+
   if (isValid) {
     const data = {
       email: email,

@@ -44,8 +44,7 @@ const registerUser = () => {
   }
 
   if (!nameIsValid(fullName)) {
-    document.getElementById("fistNameError").textContent =
-      "Họ tên không được chứa ký tự đặc biệt hoặc số.";
+    document.getElementById("fullNameError").textContent ="Họ tên không được chứa ký tự đặc biệt hoặc số.";
     isValid = false;
   }
 
@@ -55,8 +54,7 @@ const registerUser = () => {
   }
 
   if (!fullName) {
-    document.getElementById("fistNameError").textContent =
-      "Họ tên không được bỏ trống.";
+    document.getElementById("fullNameError").textContent ="Họ tên không được bỏ trống.";
     isValid = false;
   }
 
